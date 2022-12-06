@@ -23,6 +23,7 @@ Without bells and whistles, our generalist Painter can achieve competitive perfo
 Painter significantly outperforms recent generalist models on several challenging tasks.
 Surprisingly, our model shows capabilities of completing out-of-domain tasks, which do not exist in the training data, such as open-category keypoint detection and object segmentation, validating the powerful task transferability of in-context learning. 
 
+[[Paper]](https://arxiv.org/abs/2212.02499)
 
 ## Hightlights
 
@@ -47,7 +48,7 @@ Surprisingly, our model shows capabilities of completing out-of-domain tasks, wh
 @article{Painter,
   title={Images Speak in Images: A Generalist Painter for In-Context Visual Learning},
   author={Wang, Xinlong and Wang, Wen and Cao, Yue and Shen, Chunhua and Huang, Tiejun},
-  journal={arXiv preprint arXiv:},
+  journal={arXiv preprint arXiv:2212.02499},
   year={2022}
 }
 ```
