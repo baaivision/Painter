@@ -1,0 +1,16 @@
+__pycache__
+datasets/
+toy_datasets/
+models
+models_inference
+work_dirs/
+wandb
+datasets
+.idea
+
+.nfs*
+*.pth
+log.txt
+log*.txt
+demo/ood
+*log.txt
