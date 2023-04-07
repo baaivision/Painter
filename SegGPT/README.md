@@ -33,7 +33,7 @@ Enjoy the [Demo](http://dev.ssi.plus:43533/)
   title={SegGPT: Segmenting Everything In Context},
   author={Wang, Xinlong and Zhang, Xiaosong and Cao, Yue and Wang, Wen and Shen, Chunhua and Huang, Tiejun},
   journal={arXiv preprint arXiv:2304.03284},
-  year={2022}
+  year={2023}
 }
 ```
 

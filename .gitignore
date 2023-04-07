@@ -12,5 +12,4 @@ datasets
 *.pth
 log.txt
 log*.txt
-demo/ood
 *log.txt
