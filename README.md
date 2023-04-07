@@ -1,13 +1,13 @@
 <div align="center">
 
-<h2>Painter & SegGPT: Vision Foundation Model Fanatics from BAAI</h2>
+<h2>Painter  → SegGPT: Vision Foundation Models from BAAI</h2>
 
 https://user-images.githubusercontent.com/22233070/230440971-ad015101-205f-4b02-a176-de6e94848b5a.mp4
 
 
 </div>
 
-
+---
 
 
 - [**Painter**](Painter) (CVPR 2023) - Images Speak in Images: A Generalist Painter for In-Context Visual Learning
