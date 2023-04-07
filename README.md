@@ -16,7 +16,7 @@ https://user-images.githubusercontent.com/22233070/230440971-ad015101-205f-4b02-
 
 
 ## News
-- 2023.4 Enjoy the [SegGPT demo](http://dev.ssi.plus:43533/).
+- 2023.4 Enjoy the [SegGPT demo](https://huggingface.co/spaces/BAAI/SegGPT).
 - 2023.3 Code and model of Painter are available.
 
 ## Contact

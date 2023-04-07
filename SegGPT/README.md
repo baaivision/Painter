@@ -5,7 +5,7 @@
 
 <sup>1</sup>[BAAI](https://www.baai.ac.cn/english.html), &nbsp; <sup>2</sup>[ZJU](https://www.zju.edu.cn/english/), &nbsp; <sup>3</sup>[PKU](https://english.pku.edu.cn/)
 
-Enjoy the [Demo](http://dev.ssi.plus:43533/)
+Enjoy the [Demo](https://huggingface.co/spaces/BAAI/SegGPT)
 
 
 <br>
@@ -22,7 +22,7 @@ Enjoy the [Demo](http://dev.ssi.plus:43533/)
    Our results show strong capabilities in segmenting in-domain and out-of-domain targets, either qualitatively or quantitatively. 
 
 [[Paper]](https://arxiv.org/abs/2304.03284)
-[[Demo]](http://dev.ssi.plus:43533/)
+[[Demo]](https://huggingface.co/spaces/BAAI/SegGPT)
 
 
 
