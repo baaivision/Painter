@@ -21,7 +21,7 @@ Enjoy the [Demo](http://dev.ssi.plus:43533/)
    SegGPT is evaluated on a broad range of tasks, including few-shot semantic segmentation, video object segmentation, semantic segmentation, and panoptic segmentation. 
    Our results show strong capabilities in segmenting in-domain and out-of-domain targets, either qualitatively or quantitatively. 
 
-[[Paper]](https://arxiv.org/abs/2212.02499)
+[[Paper]](https://arxiv.org/abs/2304.03284)
 [[Demo]](http://dev.ssi.plus:43533/)
 
 
@@ -32,7 +32,7 @@ Enjoy the [Demo](http://dev.ssi.plus:43533/)
 @article{SegGPT,
   title={SegGPT: Segmenting Everything In Context},
   author={Wang, Xinlong and Zhang, Xiaosong and Cao, Yue and Wang, Wen and Shen, Chunhua and Huang, Tiejun},
-  journal={arXiv preprint arXiv:2212.02499},
+  journal={arXiv preprint arXiv:2304.03284},
   year={2022}
 }
 ```
