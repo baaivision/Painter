@@ -18,7 +18,7 @@ def inference_mask1(prompt,
         "img" : resizeImg(img),
         "img_" : resizeImg(img_)
     }
-    r = requests.post("http://120.92.79.209/painter/run", json = files)
+    r = requests.post("http://127.0.0.1/painter/run", json = files)
     a = json.loads(r.text)
     res = []
     for i in range(len(a)):
