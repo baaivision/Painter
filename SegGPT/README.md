@@ -24,7 +24,15 @@ Enjoy the [Demo](https://huggingface.co/spaces/BAAI/SegGPT)
 [[Paper]](https://arxiv.org/abs/2304.03284)
 [[Demo]](https://huggingface.co/spaces/BAAI/SegGPT)
 
+## **Run the demo**
+- We provide a UI  with gradio for running the demo locally. Running the following command in a terminal will launch the demo: 
+    ```
+    python app_gradio.py
+    ```
+- This demo is also hosted on HuggingFace [here](https://huggingface.co/spaces/BAAI/SegGPT).
+- The current UI interface just unleashes a small part of the capabilities of SegGPT. Please stay tuned for more demonstrations.
 
+<image src="rainbow.gif" width="720px" />
 
 ## Citation
 
