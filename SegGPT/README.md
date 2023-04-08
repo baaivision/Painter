@@ -32,7 +32,10 @@ Enjoy the [Demo](https://huggingface.co/spaces/BAAI/SegGPT)
 - This demo is also hosted on HuggingFace [here](https://huggingface.co/spaces/BAAI/SegGPT).
 - The current UI interface just unleashes a small part of the capabilities of SegGPT. Please stay tuned for more demonstrations.
 
+<div align="center">
 <image src="rainbow.gif" width="720px" />
+</div>
+
 
 ## Citation
 
