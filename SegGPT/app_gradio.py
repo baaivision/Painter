@@ -52,24 +52,29 @@ examples = [
             ['./images/rainbow_1.jpg', './images/rainbow_2.jpg', './images/rainbow_3.jpg'],
             ['./images/earth_1.jpg', './images/earth_2.jpg', './images/earth_3.jpg'],
             ['./images/obj_1.jpg', './images/obj_2.jpg', './images/obj_3.jpg'],
-            ['./images/xray_1.jpg', './images/xray_2.jpg', './images/xray_3.jpg'],
             ['./images/ydt_2.jpg', './images/ydt_1.jpg', './images/ydt_3.jpg'],
            ]
 
 demo_mask = gr.Interface(fn=inference_mask1,
                    inputs=[gr.ImageMask(brush_radius=8, label="prompt (提示图)"), gr.Image(label="img1 (测试图1)"), gr.Image(label="img2 (测试图2)")],
-                    outputs=[gr.Image(label="output1 (输出图1)").style(height=384, width=384), gr.Image(label="output2 (输出图2)").style(height=384, width=384)],
+                    #outputs=[gr.Image(shape=(448, 448), label="output1 (输出图1)"), gr.Image(shape=(448, 448), label="output2 (输出图2)")],
+                    outputs=[gr.Image(label="output1 (输出图1)").style(height=256, width=256), gr.Image(label="output2 (输出图2)").style(height=256, width=256)],
                     #outputs=gr.Gallery(label="outputs (输出图)"),
                     examples=examples,
+                    #title="SegGPT for Any Segmentation<br>(Painter Inside)",
                     description="<p> \
                     Choose an example below &#128293; &#128293;  &#128293; <br>\
                     Or, upload by yourself: <br>\
                     1. Upload images to be tested to 'img1' and/or 'img2'. <br>2. Upload a prompt image to 'prompt' and draw a mask.  <br>\
-                            Tips: The more accurate you annotate, the more accurate the model predicts.;) \
+                            <br> \
+                            💎 The more accurate you annotate, the more accurate the model predicts. <br>\
+                            💎 Examples below were never trained and are randomly selected for testing in the wild. <br>\
+                            💎 Current UI interface only unleashes a small part of the capabilities of SegGPT, i.e., 1-shot case. \
 </p>",
                    cache_examples=False,
                    allow_flagging="never",
                    )
+
 
 
 title = "SegGPT: Segmenting Everything In Context<br> \
