@@ -29,7 +29,7 @@ Enjoy the [Demo](https://huggingface.co/spaces/BAAI/SegGPT)
     ```
     python app_gradio.py
     ```
-- This demo is also hosted on HuggingFace [here](https://huggingface.co/spaces/BAAI/SegGPT).
+- This demo is also hosted on Hugging Face [here](https://huggingface.co/spaces/BAAI/SegGPT).
 
 <div align="center">
 <image src="rainbow.gif" width="720px" />
