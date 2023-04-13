@@ -29,7 +29,9 @@ Enjoy the [Demo](https://huggingface.co/spaces/BAAI/SegGPT)
     ```
     python app_gradio.py
     ```
+- We combined SAM and SegGPT to enable one touch for segmentation in all images (一触百通), as well as any segmentation in a video.
 - This demo is also hosted on HuggingFace [here](https://huggingface.co/spaces/BAAI/SegGPT).
+
 
 <div align="center">
 <image src="rainbow.gif" width="720px" />
