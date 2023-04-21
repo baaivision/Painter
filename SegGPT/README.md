@@ -33,7 +33,7 @@ Enjoy the [Demo](https://huggingface.co/spaces/BAAI/SegGPT)
 - This demo is also hosted on HuggingFace [here](https://huggingface.co/spaces/BAAI/SegGPT).
 
 ## **Inference**
-- We provide the code for SegGPT inference, please refer to [SegGPT_inference/README.md](SegGPT_inference/README.md)
+- We provide the model and code for SegGPT inference, please refer to [SegGPT_inference/README.md](SegGPT_inference/README.md).
 
 <div align="center">
 <image src="rainbow.gif" width="720px" />
