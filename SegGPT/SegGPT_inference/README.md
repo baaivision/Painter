@@ -3,7 +3,7 @@
 ### Installation
 ```
 git clone https://github.com/baaivision/Painter
-cd Painter/SegGPT/SegGPT_inference && wget https://huggingface.co/BAAI/SegGPT/blob/main/seggpt_vit_large.pth
+cd Painter/SegGPT/SegGPT_inference && wget https://huggingface.co/BAAI/SegGPT/resolve/main/seggpt_vit_large.pth
 pip install -r requirements.txt
 ```
 ### Usage
