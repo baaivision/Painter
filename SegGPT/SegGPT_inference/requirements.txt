@@ -1,0 +1,6 @@
+torch~=1.8
+numpy
+opencv-python
+timm==0.3.2
+fairscale==0.4.13
+git+https://github.com/facebookresearch/detectron2.git

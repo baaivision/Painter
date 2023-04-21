@@ -25,13 +25,15 @@ Enjoy the [Demo](https://huggingface.co/spaces/BAAI/SegGPT)
 [[Demo]](https://huggingface.co/spaces/BAAI/SegGPT)
 
 ## **Run the demo**
-- We provide a UI  with gradio for running the demo locally. Running the following command in a terminal will launch the demo: 
+- We provide a UI with gradio for running the demo locally. Running the following command in a terminal will launch the demo: 
     ```
     python app_gradio.py
     ```
 - We combined SAM and SegGPT to enable one touch for segmentation in all images (一触百通), as well as any segmentation in a video.
 - This demo is also hosted on HuggingFace [here](https://huggingface.co/spaces/BAAI/SegGPT).
 
+## **Inference**
+- We provide the code for SegGPT inference, please refer to [SegGPT_inference/README.md](SegGPT_inference/README.md)
 
 <div align="center">
 <image src="rainbow.gif" width="720px" />

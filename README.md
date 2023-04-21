@@ -16,6 +16,7 @@ https://user-images.githubusercontent.com/22233070/230440971-ad015101-205f-4b02-
 
 
 ## News
+- 2023.4 Inference code and model of SegGPT are available at [here](SegGPT/SegGPT_inference/README.md).
 - 2023.4 We combined SAM and SegGPT to enable one touch for segmentation in all images (一触百通), as well as any segmentation in a video (分割视频中的一切). Check it out [here](https://huggingface.co/spaces/BAAI/SegGPT).
 - 2023.4 Enjoy the [SegGPT demo](https://huggingface.co/spaces/BAAI/SegGPT).
 - 2023.3 Code and model of Painter are available.
