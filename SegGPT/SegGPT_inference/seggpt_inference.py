@@ -59,10 +59,7 @@ if __name__ == '__main__':
     if args.input_image is not None:
         assert args.prompt_image is not None and args.prompt_target is not None
 
-        img_name = os.path.basename(args.input_image)
-        out_path = os.path.join(args.output_dir, "output_" + '.'.join(img_name.split('.')[:-1]) + '.png')
-
-        inference_image(model, device, args.input_image, args.prompt_image, args.prompt_target, out_path)
+        inference_image(model, device, args.input_image, args.prompt_image, args.prompt_target, args.output_dir)
     
     if args.input_video is not None:
         assert args.prompt_target is not None and len(args.prompt_target) == 1

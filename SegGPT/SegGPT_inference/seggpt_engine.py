@@ -1,3 +1,5 @@
+import os
+
 import torch
 import torch.nn.functional as F
 import numpy as np
@@ -50,10 +52,10 @@ def run_one_image(img, tgt, model, device):
 
     output = y[0, y.shape[1]//2:, :, :]
     output = torch.clip((output * imagenet_std + imagenet_mean) * 255, 0, 255)
-    return output
+    return output, mask
 
 
-def inference_image(model, device, img_path, img2_paths, tgt2_paths, out_path):
+def inference_image(model, device, img_path, img2_paths, tgt2_paths, output_dir):
     res, hres = 448, 448
 
     image = Image.open(img_path).convert("RGB")
@@ -93,14 +95,21 @@ def inference_image(model, device, img_path, img2_paths, tgt2_paths, out_path):
     """### Run SegGPT on the image"""
     # make random mask reproducible (comment out to make it change)
     torch.manual_seed(2)
-    output = run_one_image(img, tgt, model, device)
+    output, mask = run_one_image(img, tgt, model, device)
     output = F.interpolate(
         output[None, ...].permute(0, 3, 1, 2), 
         size=[size[1], size[0]], 
         mode='nearest',
     ).permute(0, 2, 3, 1)[0].numpy()
     output = Image.fromarray((input_image * (0.6 * output / 255 + 0.4)).astype(np.uint8))
+
+    img_name = os.path.basename(img_path)
+    out_path = os.path.join(output_dir, "output_" + '.'.join(img_name.split('.')[:-1]) + '.png')
     output.save(out_path)
+
+    mask_path = os.path.join(output_dir, "mask_" + '.'.join(img_name.split('.')[:-1]) + '.png')
+    mask_image = Image.fromarray(mask.detach().cpu().numpy().astype(np.uint8))
+    mask_image.save(mask_path)
 
 
 def inference_video(model, device, vid_path, num_frames, img2_paths, tgt2_paths, out_path):
