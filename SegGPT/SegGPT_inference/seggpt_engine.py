@@ -96,7 +96,7 @@ def inference_image(model, device, img_path, img2_paths, tgt2_paths, output_dir)
     # make random mask reproducible (comment out to make it change)
     torch.manual_seed(2)
     mask = run_one_image(img, tgt, model, device)
-    maskmask = F.interpolate(
+    mask = F.interpolate(
         mask[None, ...].permute(0, 3, 1, 2),
         size=[size[1], size[0]], 
         mode='nearest',
