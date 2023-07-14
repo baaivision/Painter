@@ -12,7 +12,7 @@ https://user-images.githubusercontent.com/22233070/230440971-ad015101-205f-4b02-
 
 - [**Painter**](Painter) (CVPR 2023) - Images Speak in Images: A Generalist Painter for In-Context Visual Learning
 
-- [**SegGPT**](SegGPT) (Arxiv 2023) - SegGPT: Segmenting Everything In Context
+- [**SegGPT**](SegGPT) (ICCV 2023) - SegGPT: Segmenting Everything In Context
 
 
 ## News
