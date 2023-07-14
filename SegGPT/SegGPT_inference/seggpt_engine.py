@@ -108,7 +108,7 @@ def inference_image(model, device, img_path, img2_paths, tgt2_paths, output_dir)
     output.save(out_path)
 
     mask_path = os.path.join(output_dir, "mask_" + '.'.join(img_name.split('.')[:-1]) + '.png')
-    mask_image = Image.fromarray(mask.detach().cpu().numpy().astype(np.uint8))
+    mask_image = Image.fromarray(mask.astype(np.uint8))
     mask_image.save(mask_path)
 
 
