@@ -52,7 +52,7 @@ def run_one_image(img, tgt, model, device):
 
     output = y[0, y.shape[1]//2:, :, :]
     output = torch.clip((output * imagenet_std + imagenet_mean) * 255, 0, 255)
-    return output, mask
+    return output
 
 
 def inference_image(model, device, img_path, img2_paths, tgt2_paths, output_dir):
@@ -95,13 +95,13 @@ def inference_image(model, device, img_path, img2_paths, tgt2_paths, output_dir)
     """### Run SegGPT on the image"""
     # make random mask reproducible (comment out to make it change)
     torch.manual_seed(2)
-    output, mask = run_one_image(img, tgt, model, device)
-    output = F.interpolate(
-        output[None, ...].permute(0, 3, 1, 2), 
+    mask = run_one_image(img, tgt, model, device)
+    maskmask = F.interpolate(
+        mask[None, ...].permute(0, 3, 1, 2),
         size=[size[1], size[0]], 
         mode='nearest',
     ).permute(0, 2, 3, 1)[0].numpy()
-    output = Image.fromarray((input_image * (0.6 * output / 255 + 0.4)).astype(np.uint8))
+    output = Image.fromarray((input_image * (0.6 * mask / 255 + 0.4)).astype(np.uint8))
 
     img_name = os.path.basename(img_path)
     out_path = os.path.join(output_dir, "output_" + '.'.join(img_name.split('.')[:-1]) + '.png')
