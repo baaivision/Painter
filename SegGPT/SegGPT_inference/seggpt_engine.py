@@ -104,9 +104,12 @@ def inference_image(model, device, img_path, img2_paths, tgt2_paths, output_dir)
     output = Image.fromarray((input_image * (0.6 * mask / 255 + 0.4)).astype(np.uint8))
 
     img_name = os.path.basename(img_path)
+
+    # save segmented output
     out_path = os.path.join(output_dir, "output_" + '.'.join(img_name.split('.')[:-1]) + '.png')
     output.save(out_path)
 
+    # save binary mask
     mask_path = os.path.join(output_dir, "mask_" + '.'.join(img_name.split('.')[:-1]) + '.png')
     mask_image = Image.fromarray(mask.astype(np.uint8))
     mask_image.save(mask_path)
