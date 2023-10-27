@@ -108,7 +108,7 @@ def inference_image(model, device, img_path, img2_paths, tgt2_paths, out_path, o
     output.save(out_path)
 
 
-def inference_video(model, device, vid_path, num_frames, img2_paths, tgt2_paths, out_path):
+def inference_video(model, device, vid_path, num_frames, img2_paths, tgt2_paths, out_path, ovl_path):
     res, hres = 448, 448
 
     cap = cv2.VideoCapture(vid_path)
@@ -116,7 +116,10 @@ def inference_video(model, device, vid_path, num_frames, img2_paths, tgt2_paths,
     width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-    video_writer = cv2.VideoWriter(out_path, fourcc, fps, (width, height), True)
+    output_video_writer = cv2.VideoWriter(out_path, fourcc, fps, (width, height), True)
+    
+    if ovl_path is not None:
+        overlay_video_writer = cv2.VideoWriter(out_path, fourcc, fps, (width, height), True)
 
     if img2_paths is None:
         _, frame = cap.read()
@@ -180,7 +183,11 @@ def inference_video(model, device, vid_path, num_frames, img2_paths, tgt2_paths,
             size=[size[1], size[0]], 
             mode='nearest',
         ).permute(0, 2, 3, 1)[0].numpy()
-        output = input_image * (0.6 * output / 255 + 0.4)
-        video_writer.write(np.ascontiguousarray(output.astype(np.uint8)[:, :, ::-1]))
+        overlay = input_image * (0.6 * output / 255 + 0.4)
+        output_video_writer.write(np.ascontiguousarray(output.astype(np.uint8)[:, :, ::-1]))
+
+        if ovl_path is not None:
+            overlay_video_writer.write(np.ascontiguousarray(overlay.astype(np.uint8)[:, :, ::-1]))
     
-    video_writer.release()
+    output_video_writer.release()
+    overlay_video_writer.release()

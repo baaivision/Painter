@@ -73,7 +73,11 @@ if __name__ == '__main__':
         assert args.prompt_target is not None and len(args.prompt_target) == 1
         vid_name = os.path.basename(args.input_video)
         out_path = os.path.join(args.output_dir, "output_" + '.'.join(vid_name.split('.')[:-1]) + '.mp4')
+        if args.overlay_dir is not None:
+            ovl_path = os.path.join(args.overlay_dir, "overlay_" + '.'.join(img_name.split('.')[:-1]) + '.png')
+        else:
+            ovl_path = None
 
-        inference_video(model, device, args.input_video, args.num_frames, args.prompt_image, args.prompt_target, out_path)
+        inference_video(model, device, args.input_video, args.num_frames, args.prompt_image, args.prompt_target, out_path, ovl_path)
 
     print('Finished.')
