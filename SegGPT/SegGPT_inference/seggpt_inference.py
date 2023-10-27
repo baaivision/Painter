@@ -61,9 +61,9 @@ if __name__ == '__main__':
         assert args.prompt_image is not None and args.prompt_target is not None
 
         img_name = os.path.basename(args.input_image)
-        out_path = os.path.join(args.output_dir, "output_" + '.'.join(img_name.split('.')[:-1]) + '.png')
+        out_path = os.path.join(args.output_dir,'.'.join(img_name.split('.')[:-1]) + '.png')
         if args.overlay_dir is not None:
-            ovl_path = os.path.join(args.overlay_dir, "overlay_" + '.'.join(img_name.split('.')[:-1]) + '.png')
+            ovl_path = os.path.join(args.overlay_dir, '.'.join(img_name.split('.')[:-1]) + '.png')
         else:
             ovl_path = None
 
@@ -72,9 +72,9 @@ if __name__ == '__main__':
     if args.input_video is not None:
         assert args.prompt_target is not None and len(args.prompt_target) == 1
         vid_name = os.path.basename(args.input_video)
-        out_path = os.path.join(args.output_dir, "output_" + '.'.join(vid_name.split('.')[:-1]) + '.mp4')
+        out_path = os.path.join(args.output_dir, '.'.join(vid_name.split('.')[:-1]) + '.mp4')
         if args.overlay_dir is not None:
-            ovl_path = os.path.join(args.overlay_dir, "overlay_" + '.'.join(img_name.split('.')[:-1]) + '.png')
+            ovl_path = os.path.join(args.overlay_dir, '.'.join(img_name.split('.')[:-1]) + '.png')
         else:
             ovl_path = None
 
