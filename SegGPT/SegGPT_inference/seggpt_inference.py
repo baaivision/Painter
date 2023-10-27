@@ -74,7 +74,7 @@ if __name__ == '__main__':
         vid_name = os.path.basename(args.input_video)
         out_path = os.path.join(args.output_dir, '.'.join(vid_name.split('.')[:-1]) + '.mp4')
         if args.overlay_dir is not None:
-            ovl_path = os.path.join(args.overlay_dir, '.'.join(img_name.split('.')[:-1]) + '.png')
+            ovl_path = os.path.join(args.overlay_dir, '.'.join(img_name.split('.')[:-1]) + '.mp4')
         else:
             ovl_path = None
 
