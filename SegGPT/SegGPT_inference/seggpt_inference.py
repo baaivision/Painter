@@ -14,25 +14,25 @@ imagenet_std = np.array([0.229, 0.224, 0.225])
 
 def get_args_parser():
     parser = argparse.ArgumentParser('SegGPT inference', add_help=False)
-    parser.add_argument('--ckpt_path', type=str, help='path to ckpt',
+    parser.add_argument('--ckpt-path', type=str, help='path to ckpt',
                         default='seggpt_vit_large.pth')
     parser.add_argument('--model', type=str, help='dir to ckpt',
                         default='seggpt_vit_large_patch16_input896x448')
-    parser.add_argument('--input_image', type=str, help='path to input image to be tested',
+    parser.add_argument('--input-image', type=str, help='path to input image to be tested',
                         default=None)
-    parser.add_argument('--input_video', type=str, help='path to input video to be tested',
+    parser.add_argument('--input-video', type=str, help='path to input video to be tested',
                         default=None)
-    parser.add_argument('--num_frames', type=int, help='number of prompt frames in video',
+    parser.add_argument('--num-frames', type=int, help='number of prompt frames in video',
                         default=0)
-    parser.add_argument('--prompt_image', type=str, nargs='+', help='path to prompt image',
+    parser.add_argument('--prompt-image', type=str, nargs='+', help='path to prompt image',
                         default=None)
-    parser.add_argument('--prompt_target', type=str, nargs='+', help='path to prompt target',
+    parser.add_argument('--prompt-target', type=str, nargs='+', help='path to prompt target',
                         default=None)
-    parser.add_argument('--seg_type', type=str, help='embedding for segmentation types', 
+    parser.add_argument('--seg-type', type=str, help='embedding for segmentation types', 
                         choices=['instance', 'semantic'], default='instance')
     parser.add_argument('--device', type=str, help='cuda or cpu',
                         default='cuda')
-    parser.add_argument('--output_dir', type=str, help='path to output folder for output mask',
+    parser.add_argument('--output-dir', type=str, help='path to output folder for output mask',
                         default='./')
     parser.add_argument('--overlay-dir', type=str, help='path to output folder for combined mask and input (for visualising)', default=None)
     return parser.parse_args()
