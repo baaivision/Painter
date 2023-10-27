@@ -32,8 +32,9 @@ def get_args_parser():
                         choices=['instance', 'semantic'], default='instance')
     parser.add_argument('--device', type=str, help='cuda or cpu',
                         default='cuda')
-    parser.add_argument('--output_dir', type=str, help='path to output',
+    parser.add_argument('--output_dir', type=str, help='path to output folder for output mask',
                         default='./')
+    parser.add_argument('--overlay-dir', type=str, help='path to output folder for combined mask and input (for visualising)', default=None)
     return parser.parse_args()
 
 
@@ -61,8 +62,12 @@ if __name__ == '__main__':
 
         img_name = os.path.basename(args.input_image)
         out_path = os.path.join(args.output_dir, "output_" + '.'.join(img_name.split('.')[:-1]) + '.png')
+        if args.overlay_dir is not None:
+            ovl_path = os.path.join(args.overlay_dir, "overlay_" + '.'.join(img_name.split('.')[:-1]) + '.png')
+        else:
+            ovl_path = None
 
-        inference_image(model, device, args.input_image, args.prompt_image, args.prompt_target, out_path)
+        inference_image(model, device, args.input_image, args.prompt_image, args.prompt_target, out_path, ovl_path)
     
     if args.input_video is not None:
         assert args.prompt_target is not None and len(args.prompt_target) == 1

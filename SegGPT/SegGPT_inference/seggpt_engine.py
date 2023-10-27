@@ -53,7 +53,7 @@ def run_one_image(img, tgt, model, device):
     return output
 
 
-def inference_image(model, device, img_path, img2_paths, tgt2_paths, out_path):
+def inference_image(model, device, img_path, img2_paths, tgt2_paths, out_path, ovl_path):
     res, hres = 448, 448
 
     image = Image.open(img_path).convert("RGB")
@@ -99,7 +99,12 @@ def inference_image(model, device, img_path, img2_paths, tgt2_paths, out_path):
         size=[size[1], size[0]], 
         mode='nearest',
     ).permute(0, 2, 3, 1)[0].numpy()
-    output = Image.fromarray((input_image * (0.6 * output / 255 + 0.4)).astype(np.uint8))
+
+    if ovl_path is not None:
+        overlay = Image.fromarray((input_image * (0.6 * output / 255 + 0.4)).astype(np.uint8))
+        overlay.save(ovl_path)
+
+    output = Image.fromarray(output.astype(np.uint8))
     output.save(out_path)
 
 
