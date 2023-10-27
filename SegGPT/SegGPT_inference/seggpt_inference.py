@@ -12,6 +12,13 @@ imagenet_mean = np.array([0.485, 0.456, 0.406])
 imagenet_std = np.array([0.229, 0.224, 0.225])
 
 
+def init_dirs(out_dir, ovl_dir):
+    # create output directories if they don't exit
+    os.makedirs(out_dir, exist_ok=True)
+    if ovl_dir is not None:
+        os.makedirs(ovl_dir, exist_ok=True)
+
+
 def get_args_parser():
     parser = argparse.ArgumentParser('SegGPT inference', add_help=False)
     parser.add_argument('--ckpt-path', type=str, help='path to ckpt',
@@ -55,6 +62,8 @@ if __name__ == '__main__':
     device = torch.device(args.device)
     model = prepare_model(args.ckpt_path, args.model, args.seg_type).to(device)
     print('Model loaded.')
+
+    init_dirs(args.output_dir, args.overlay_dir)
 
     assert args.input_image or args.input_video and not (args.input_image and args.input_video)
     if args.input_image is not None:
