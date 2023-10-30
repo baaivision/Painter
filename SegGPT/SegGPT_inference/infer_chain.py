@@ -11,6 +11,8 @@ from seggpt_inference import prepare_model
 
 from PIL import Image
 
+import time
+
 imagenet_mean = np.array([0.485, 0.456, 0.406])
 imagenet_std = np.array([0.229, 0.224, 0.225])
 
@@ -57,7 +59,7 @@ def main():
     prompt_masks = frame_prompts['masks']
     frame_output = os.path.join(output_path, 'frame.png')
     frame_overlay_output = os.path.join(output_path, 'frame_overlay.png')
-    frame_mask = inference_image(model, device, input_image, prompt_images, prompt_masks, frame_output, frame_overlay_output, return_mask=True, upscale=True)
+    frame_mask = inference_image(model, device, input_image, prompt_images, prompt_masks, frame_output, frame_overlay_output, return_mask=True, upscale=False)
 
     # now convert frame_mask to an image to see it
     # threshold mask
@@ -73,7 +75,7 @@ def main():
     prompt_masks = capped_prompts['masks']
     capped_output = os.path.join(output_path, 'capped.png')
     capped_overlay_output = os.path.join(output_path, 'capped_overlay.png')
-    capped_mask = inference_image(model, device, input_image, prompt_images, prompt_masks, capped_output, capped_overlay_output, return_mask=True, upscale=True)
+    capped_mask = inference_image(model, device, input_image, prompt_images, prompt_masks, capped_output, capped_overlay_output, return_mask=True, upscale=False)
 
     # convert capped_mask to an image to see it
     threshold = 20
@@ -107,4 +109,11 @@ def main():
 
 
 if __name__ == '__main__':
+    st = time.process_time()
+    wt = time.perf_counter()
     main()
+
+    et = time.process_time()
+    ewt = time.perf_counter()
+
+    print(f'Finished in {et-st} seconds, wall time {ewt- wt}')
