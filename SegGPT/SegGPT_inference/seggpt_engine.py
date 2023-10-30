@@ -53,7 +53,7 @@ def run_one_image(img, tgt, model, device):
     return output
 
 
-def inference_image(model, device, img_path, img2_paths, tgt2_paths, out_path, ovl_path):
+def inference_image(model, device, img_path, img2_paths, tgt2_paths, out_path, ovl_path=None, return_mask=False, upscale=True):
     res, hres = 448, 448
 
     image = Image.open(img_path).convert("RGB")
@@ -94,18 +94,24 @@ def inference_image(model, device, img_path, img2_paths, tgt2_paths, out_path, o
     # make random mask reproducible (comment out to make it change)
     torch.manual_seed(2)
     output = run_one_image(img, tgt, model, device)
-    output = F.interpolate(
-        output[None, ...].permute(0, 3, 1, 2), 
-        size=[size[1], size[0]], 
-        mode='nearest',
-    ).permute(0, 2, 3, 1)[0].numpy()
+    if upscale:
+        output = F.interpolate(
+            output[None, ...].permute(0, 3, 1, 2), 
+            size=[size[1], size[0]], 
+            mode='nearest',
+        ).permute(0, 2, 3, 1)[0]
+        image = input_image / 255  # needed for overlay
+    output =  output.numpy()
 
     if ovl_path is not None:
-        overlay = Image.fromarray((input_image * (0.6 * output / 255 + 0.4)).astype(np.uint8))
+        overlay = Image.fromarray((image * 255 * (0.6 * output / 255 + 0.4)).astype(np.uint8))
         overlay.save(ovl_path)
 
-    output = Image.fromarray(output.astype(np.uint8))
-    output.save(out_path)
+    output_img = Image.fromarray(output.astype(np.uint8))
+    output_img.save(out_path)
+
+    if return_mask:
+        return output
 
 
 def inference_video(model, device, vid_path, num_frames, img2_paths, tgt2_paths, out_path, ovl_path):
