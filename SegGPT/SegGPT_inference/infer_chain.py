@@ -21,7 +21,7 @@ def main():
     input_image = 'input/images/IMG_0124.JPG'
     save_masks = True
 
-    frame_prompts = {
+    area_prompts = {
         'masks': [
             "input/masks/IMG_0084_frame_mask.jpg",
         "input/masks/IMG_0100_frame_mask.jpg"
@@ -33,7 +33,7 @@ def main():
     }
 
 
-    capped_prompts = {
+    object_prompts = {
         'masks': [
             "input/masks/IMG_0113_capped_mask.jpg",
             "input/masks/IMG_0126_capped_mask.jpg" 
@@ -54,52 +54,52 @@ def main():
     default_seg_type = "instance"  # TODO: Try semantic
     model = prepare_model(default_ckpt_path, default_model, default_seg_type).to(device)
 
-    # run inference to get frame
-    prompt_images = frame_prompts['images']
-    prompt_masks = frame_prompts['masks']
-    frame_output = os.path.join(output_path, 'frame.png')
-    frame_overlay_output = os.path.join(output_path, 'frame_overlay.png')
-    frame_mask = inference_image(model, device, input_image, prompt_images, prompt_masks, frame_output, frame_overlay_output, return_mask=True, upscale=False)
+    # run inference to get area
+    prompt_images = area_prompts['images']
+    prompt_masks = area_prompts['masks']
+    area_output = os.path.join(output_path, 'area.png')
+    area_overlay_output = os.path.join(output_path, 'area_overlay.png')
+    area_mask = inference_image(model, device, input_image, prompt_images, prompt_masks, area_output, area_overlay_output, return_mask=True, upscale=False)
 
-    # now convert frame_mask to an image to see it
+    # now convert area_mask to an image to see it
     # threshold mask
     threshold = 20
-    frame_mask = frame_mask.max(axis=-1)  # convert to greyscale
-    frame_mask = frame_mask > threshold
+    area_mask = area_mask.max(axis=-1)  # convert to greyscale
+    area_mask = area_mask > threshold
     if save_masks:
-        frame_mask_img = Image.fromarray(255 * frame_mask.astype(np.uint8), mode='L')
-        frame_mask_img.save(os.path.join(output_path, 'frame_mask.png'))
+        area_mask_img = Image.fromarray(255 * area_mask.astype(np.uint8), mode='L')
+        area_mask_img.save(os.path.join(output_path, 'area_mask.png'))
 
-    # run inference to get capped cells
-    prompt_images = capped_prompts['images']
-    prompt_masks = capped_prompts['masks']
-    capped_output = os.path.join(output_path, 'capped.png')
-    capped_overlay_output = os.path.join(output_path, 'capped_overlay.png')
-    capped_mask = inference_image(model, device, input_image, prompt_images, prompt_masks, capped_output, capped_overlay_output, return_mask=True, upscale=False)
+    # run inference to get objects
+    prompt_images = object_prompts['images']
+    prompt_masks = object_prompts['masks']
+    object_output = os.path.join(output_path, 'object.png')
+    object_overlay_output = os.path.join(output_path, 'object_overlay.png')
+    object_mask = inference_image(model, device, input_image, prompt_images, prompt_masks, object_output, object_overlay_output, return_mask=True, upscale=False)
 
-    # convert capped_mask to an image to see it
+    # convert object_mask to an image to see it
     threshold = 20
-    capped_mask = capped_mask.max(axis=-1)  # convert to greyscale
-    capped_mask = (capped_mask > threshold) & frame_mask
+    object_mask = object_mask.max(axis=-1)  # convert to greyscale
+    object_mask = (object_mask > threshold) & area_mask
     if save_masks:
-        capped_mask_img = Image.fromarray(255 * capped_mask.astype(np.uint8), mode='L')
-        capped_mask_img.save(os.path.join(output_path, 'capped_mask.png'))
+        object_mask_img = Image.fromarray(255 * object_mask.astype(np.uint8), mode='L')
+        object_mask_img.save(os.path.join(output_path, 'object_mask.png'))
 
 
-    # determine number of pixels that make up frame
-    frame_pixels = np.count_nonzero(frame_mask)  # could also just do sum
-    print("Number of pixels for the frame:", frame_pixels)
+    # determine number of pixels that make up area
+    area_pixels = np.count_nonzero(area_mask)  # could also just do sum
+    print("Number of pixels for the area:", area_pixels)
 
-    # determine number of pixels that make up capped cells
-    capped_pixels = np.count_nonzero(capped_mask)
-    print("Number of pixels for capped cells:", capped_pixels)
+    # determine number of pixels that make up object cells
+    object_pixels = np.count_nonzero(object_mask)
+    print("Number of pixels for objects:", object_pixels)
 
-    # calculate percentage of capped cells
-    capped_fraction = capped_pixels / frame_pixels
+    # calculate percentage of objects
+    object_fraction = object_pixels / area_pixels
 
-    print("Capped fraction:", capped_fraction)
+    print("object fraction:", object_fraction)
 
-    # TODO: Only use capped cells segmented in frame area for improved
+    # TODO: Only use object cells segmented in area area for improved
     # accuracy --> could we add this as an extra prompt?
     # TODO: Don't scale back up to original resolution, not necessary for
     # fraction
