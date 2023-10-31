@@ -3,5 +3,5 @@ output*
 **.pyc
 **/__pycache__/**
 __pycache__
-inputs/*
-outputs/*
+input/*
+output/*
