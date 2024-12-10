@@ -1,5 +1,6 @@
-import os
+import os, gc
 import argparse
+from tqdm import tqdm
 
 import torch
 import numpy as np
@@ -18,7 +19,7 @@ def get_args_parser():
                         default='seggpt_vit_large.pth')
     parser.add_argument('--model', type=str, help='dir to ckpt',
                         default='seggpt_vit_large_patch16_input896x448')
-    parser.add_argument('--input_image', type=str, help='path to input image to be tested',
+    parser.add_argument('--input_image', type=str, nargs='+', help='path to input image to be tested',
                         default=None)
     parser.add_argument('--input_video', type=str, help='path to input video to be tested',
                         default=None)
@@ -59,10 +60,10 @@ if __name__ == '__main__':
     if args.input_image is not None:
         assert args.prompt_image is not None and args.prompt_target is not None
 
-        img_name = os.path.basename(args.input_image)
-        out_path = os.path.join(args.output_dir, "output_" + '.'.join(img_name.split('.')[:-1]) + '.png')
-
-        inference_image(model, device, args.input_image, args.prompt_image, args.prompt_target, out_path)
+        for image in tqdm(args.input_image):
+            inference_image(model, device, image, args.prompt_image, args.prompt_target, args.output_dir)
+            torch.cuda.empty_cache()
+            gc.collect()
     
     if args.input_video is not None:
         assert args.prompt_target is not None and len(args.prompt_target) == 1
