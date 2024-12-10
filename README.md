@@ -2,7 +2,7 @@
 
 <h2>Painter  → SegGPT: Vision Foundation Models from BAAI</h2>
 
-https://user-images.githubusercontent.com/22233070/230440971-ad015101-205f-4b02-a176-de6e94848b5a.mp4
+https://github.com/S3L1M/Painter/assets/28127068/cfb6fd32-a549-4fbc-bcfe-6e6adc000575
 
 
 </div>
